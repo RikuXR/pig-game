@@ -39,15 +39,29 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         document.getElementById('current-' + activePlayer).textContent = roundScore;
     } else {
         // Next player
-        roundScore = 0;
-        activePlayer = +!activePlayer
-
-        document.getElementById('current-0').textContent = 0;
-        document.getElementById('current-1').textContent = 0;
-
-        document.querySelector('.player-0-panel').classList.toggle('active');
-        document.querySelector('.player-1-panel').classList.toggle('active');
-
-        diceDOM.style.display = 'none';
+        nextPlayer();
     }
 })
+
+document.querySelector('.btn-hold').addEventListener('click', function(){
+    // Add CURRENT score to GLOBAL score
+    scores[activePlayer] += roundScore;
+
+    // Update the UI
+    document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
+
+    // Check if player won the game
+});
+
+function nextPlayer() {
+    roundScore = 0;
+    activePlayer = +!activePlayer
+
+    document.getElementById('current-0').textContent = 0;
+    document.getElementById('current-1').textContent = 0;
+
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+
+    diceDOM.style.display = 'none';
+}
