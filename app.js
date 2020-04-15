@@ -51,6 +51,17 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
     document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
 
     // Check if player won the game
+    if (scores[activePlayer] >= 20) {
+        document.getElementById('name-' + activePlayer).textContent = 'Winner!';
+        document.querySelector('.dice').style.display = 'none';
+        document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+    } else {
+
+    }
+    
+    // Next player
+    nextPlayer();
 });
 
 function nextPlayer() {
@@ -63,5 +74,5 @@ function nextPlayer() {
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
 
-    diceDOM.style.display = 'none';
+    document.querySelector('.dice').style.display = 'none';
 }
